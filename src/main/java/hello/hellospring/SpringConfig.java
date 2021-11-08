@@ -1,14 +1,19 @@
 package hello.hellospring;
 
+import hello.hellospring.repository.JpaMemberRepository;
 import hello.hellospring.repository.MemberRepository;
 import hello.hellospring.repository.MemoryMemberRepository;
 import hello.hellospring.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
+
 //자바코드로 스프링빈 등록해주는 방법
 @Configuration
 public class SpringConfig {
+
+    private EntityManager em;
 
     @Bean
     public MemberService memberService() {
@@ -17,6 +22,7 @@ public class SpringConfig {
 
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+        return  new JpaMemberRepository(em);
+        //return new MemoryMemberRepository();
     }
 }
