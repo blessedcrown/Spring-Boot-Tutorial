@@ -6,11 +6,13 @@ import hello.hellospring.repository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 //클래스에서 crtl + shift + t를 누르면 테스트를 만들수 있다.
 //@Service //Spring container에 등록
+@Transactional //Data를 변경하려면 반드시 필요한 애노테이션
 public class MemberService {
     private final MemberRepository memberRepository;
 
